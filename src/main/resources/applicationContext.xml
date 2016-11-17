@@ -1,0 +1,74 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd"
+	default-lazy-init="true">
+	
+	<description>Spring公共配置</description>
+	
+	<!-- 读取配置文件 -->
+	<context:property-placeholder
+		ignore-unresolvable="true" location="classpath*:/application.properties" />
+	
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.dream.petstore.service" />
+	
+	<!-- 数据源配置 公共数据源 -->
+	<bean id="realDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	<!-- 	<property name="filters" value="mergeStat" /> -->
+		<!-- 密码解密 -->
+		<!-- <property name="filters" value="config" /> <property name="connectionProperties" 
+			value="config.decrypt=true" /> -->
+		<!-- 申请连接的时候检测 -->
+		<property name="testWhileIdle" value="true"></property>
+		<!-- 检测连接 -->
+		<property name="validationQuery" value="select 'x'"></property>
+		<!--maxActive: 最大连接数量 -->
+		<property name="maxActive" value="${jdbc.pool.maxActive}" />
+		<!--initialSize: 初始化连接 -->
+		<property name="initialSize" value="${jdbc.pool.maxIdle}" />
+	</bean>
+	
+	<bean id="dataSource" class="net.bull.javamelody.SpringDataSourceFactoryBean">
+	    <property name="targetName" value="realDataSource" />
+	</bean>
+	
+	<!-- 定义Mybatis Session工厂 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.dream.petstore.entity" />
+	</bean>
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- 定义事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- scan for mappers and let them be autowired -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dream.petstore.mapper" />
+        <!-- 两者取其一便可，一般多数据源的数据才需要 -->
+        <!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /> -->
+		<property name="sqlSessionTemplateBeanName" value="sqlSessionTemplate" />
+    </bean>
+</beans>
