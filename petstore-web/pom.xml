@@ -36,17 +36,6 @@
       <artifactId>spring-jdbc</artifactId>
     </dependency>
     <!-- ==spring end== -->
-    
-    <!-- ==mybatis begin== -->
-  	<dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-    </dependency>
-    <!-- ==mybatis end== -->
   	
   	<!-- ==servlet begin== -->
   	<dependency>
@@ -63,21 +52,6 @@
          <scope>provided</scope>
      </dependency>
      <!-- ==servlet end== -->
-     
-     <dependency>
-         <groupId>mysql</groupId>
-         <artifactId>mysql-connector-java</artifactId>
-     </dependency>
-     
-     <dependency>
-		<groupId>commons-dbcp</groupId>
-		<artifactId>commons-dbcp</artifactId>
-	</dependency>
-	
-	<dependency>
-		<groupId>net.bull.javamelody</groupId>
-		<artifactId>javamelody-core</artifactId>
-	</dependency>
   	
   	<!-- ==jackson begin，Spring mvc日期转换用到== -->
   	<dependency>
@@ -114,6 +88,12 @@
     <dependency>
     	<groupId>com.dream</groupId>
     	<artifactId>petstore-entity</artifactId>
+    	<version>${project.parent.version}</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.dream</groupId>
+    	<artifactId>petstore-dao</artifactId>
     	<version>${project.parent.version}</version>
     </dependency>
   </dependencies>
