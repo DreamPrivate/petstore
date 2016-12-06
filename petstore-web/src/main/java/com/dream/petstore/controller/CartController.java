@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.dream.petstore.entity.Cart;
 import com.dream.petstore.entity.CartItem;
 import com.dream.petstore.entity.Item;
-import com.dream.petstore.service.CatalogService;
+import com.dream.petstore.service.ICatalogService;
 
 /**
  * @author ronghua
@@ -45,7 +45,7 @@ public class CartController extends AbstractController {
 	private static final String CHECK_OUT = "cart/Checkout";
 
 	@Autowired
-	private transient CatalogService catalogService;
+	private transient ICatalogService catalogService;
 
 	private Cart cart;
 	//private String workingItemId;

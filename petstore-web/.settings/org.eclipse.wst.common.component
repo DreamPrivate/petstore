@@ -7,7 +7,7 @@
         <dependent-module archiveName="petstore-entity-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/petstore-entity/petstore-entity">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="petstore-dao-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/petstore-dao/petstore-dao">
+        <dependent-module archiveName="petstore-service-api-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/petstore-service-api/petstore-service-api">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/petstore/target/classes"/>

@@ -6,4 +6,12 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>petstore-service-api</artifactId>
+  
+  <dependencies>
+  	<dependency>
+    	<groupId>com.dream</groupId>
+    	<artifactId>petstore-entity</artifactId>
+    	<version>${project.parent.version}</version>
+    </dependency>
+  </dependencies>
 </project>

@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dream.petstore.entity.Account;
 import com.dream.petstore.entity.Product;
-import com.dream.petstore.service.AccountService;
-import com.dream.petstore.service.CatalogService;
+import com.dream.petstore.service.IAccountService;
+import com.dream.petstore.service.ICatalogService;
 
 /**
  * @author ronghua
@@ -50,9 +50,9 @@ public class AccountController extends AbstractController {
 	private static final List<String> CATEGORY_LIST;
 
 	@Autowired
-	private transient AccountService accountService;
+	private transient IAccountService accountService;
 	@Autowired
-	private transient CatalogService catalogService;
+	private transient ICatalogService catalogService;
 
 	private Account account = new Account();
 	private List<Product> myList;

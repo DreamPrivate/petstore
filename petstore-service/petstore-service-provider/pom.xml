@@ -83,5 +83,17 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+    	<groupId>com.dream</groupId>
+    	<artifactId>petstore-service-api</artifactId>
+    	<version>${project.parent.version}</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.dream</groupId>
+    	<artifactId>petstore-dao</artifactId>
+    	<version>${project.parent.version}</version>
+    </dependency>
   </dependencies>
 </project>

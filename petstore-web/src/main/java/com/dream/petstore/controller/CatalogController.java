@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.dream.petstore.entity.Category;
 import com.dream.petstore.entity.Item;
 import com.dream.petstore.entity.Product;
-import com.dream.petstore.service.CatalogService;
+import com.dream.petstore.service.ICatalogService;
 
 /**
  * @author ronghua
@@ -45,7 +45,7 @@ public class CatalogController extends AbstractController {
 	private static final String SEARCH_PRODUCTS = "catalog/SearchProducts";
 
 	@Autowired
-	private transient CatalogService catalogService;
+	private transient ICatalogService catalogService;
 
 	// @DefaultHandler
 	@RequestMapping(value = "viewMain", method = RequestMethod.GET)

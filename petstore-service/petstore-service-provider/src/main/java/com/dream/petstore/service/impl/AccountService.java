@@ -13,7 +13,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package com.dream.petstore.service;
+package com.dream.petstore.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,40 +21,45 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.dream.petstore.entity.Account;
 import com.dream.petstore.mapper.AccountMapper;
+import com.dream.petstore.service.IAccountService;
 
 /**
  * @author Eduardo Macarron
  *
  */
 @Service
-public class AccountService {
+public class AccountService implements IAccountService {
 
-  @Autowired
-  private AccountMapper accountMapper;
+	@Autowired
+	private AccountMapper accountMapper;
 
-  public Account getAccount(String username) {
-    return accountMapper.getAccountByUsername(username);
-  }
+	@Override
+	public Account getAccount(String username) {
+		return accountMapper.getAccountByUsername(username);
+	}
 
-  public Account getAccount(String username, String password) {
-    return accountMapper.getAccountByUsernameAndPassword(username, password);
-  }
+	@Override
+	public Account getAccount(String username, String password) {
+		return accountMapper.getAccountByUsernameAndPassword(username, password);
+	}
 
-  @Transactional
-  public void insertAccount(Account account) {
-    accountMapper.insertAccount(account);
-    accountMapper.insertProfile(account);
-    accountMapper.insertSignon(account);
-  }
+	@Override
+	@Transactional
+	public void insertAccount(Account account) {
+		accountMapper.insertAccount(account);
+		accountMapper.insertProfile(account);
+		accountMapper.insertSignon(account);
+	}
 
-  @Transactional
-  public void updateAccount(Account account) {
-    accountMapper.updateAccount(account);
-    accountMapper.updateProfile(account);
+	@Override
+	@Transactional
+	public void updateAccount(Account account) {
+		accountMapper.updateAccount(account);
+		accountMapper.updateProfile(account);
 
-    if (account.getPassword() != null && account.getPassword().length() > 0) {
-      accountMapper.updateSignon(account);
-    }
-  }
+		if (account.getPassword() != null && account.getPassword().length() > 0) {
+			accountMapper.updateSignon(account);
+		}
+	}
 
 }

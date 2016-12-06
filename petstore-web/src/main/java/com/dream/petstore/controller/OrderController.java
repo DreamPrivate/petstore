@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dream.petstore.entity.Order;
-import com.dream.petstore.service.OrderService;
+import com.dream.petstore.service.IOrderService;
 
 /**
  * @author ronghua
@@ -52,7 +52,7 @@ public class OrderController extends AbstractController {
 	private static final List<String> CARD_TYPE_LIST;
 
 	@Autowired
-	private transient OrderService orderService;
+	private transient IOrderService orderService;
 
 	static {
 		List<String> cardList = new ArrayList<String>();
