@@ -20,7 +20,4 @@
 	<!-- 读取配置文件 -->
 	<context:property-placeholder
 		ignore-unresolvable="true" location="classpath*:/application.properties" />
-	
-	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-	<context:component-scan base-package="com.dream.petstore.service" />
 </beans>

@@ -144,6 +144,26 @@
 	      <version>3.8.1</version>
 	      <scope>test</scope>
 	    </dependency>
+	    
+	    <!-- ==dubbo zk begin== -->
+	    <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>2.8.4</version>
+        </dependency>
+        
+        <dependency>
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.4.6</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.github.sgroschupf</groupId>
+			<artifactId>zkclient</artifactId>
+			<version>0.1</version>
+		</dependency>
+		<!-- ==dubbo zk end== -->
   	</dependencies>
   </dependencyManagement>
   
